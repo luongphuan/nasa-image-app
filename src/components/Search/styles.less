@@ -1,0 +1,26 @@
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  input {
+    height: 30px;
+    width: 300px;
+    border: 1px solid cornflowerblue;
+    &:focus {
+      outline-style: solid;
+      outline-width: thin;
+      outline-color: cornflowerblue;
+    }
+    &::placeholder{
+        padding-left: 10px;
+    }
+  }
+}
+.search-icon {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid cornflowerblue;
+  border-right: 1px solid cornflowerblue;
+  border-bottom: 1px solid cornflowerblue;
+  cursor: pointer;
+}
