@@ -332,6 +332,7 @@ module.exports = function (webpackEnv) {
         }),
         ...(modules.webpackAliases || {}),
         '@commons': path.resolve(__dirname, '../src/commons'),
+        '@assets': path.resolve(__dirname, '../src/assets'),
         '@constants': path.resolve(__dirname, '../src/constants'),
         '@components': path.resolve(__dirname, '../src/components'),
         '@services': path.resolve(__dirname, '../src/services'),
