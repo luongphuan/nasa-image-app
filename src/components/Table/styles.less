@@ -1,0 +1,44 @@
+.table-wrapper {
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    .table-row {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+      border-bottom: 1px solid #ddd;
+      border-top: 1px solid #ddd;
+      &:hover {
+        background-color: #dddddd;
+      }
+      td {
+        text-align: center;
+        padding: 8px;
+      }
+    }
+    .table-header {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+      background-color: #40a9ff;
+      th {
+        padding: 8px;
+      }
+    }
+    .action-button {
+      color: #1890ff;
+      outline: none;
+      cursor: pointer;
+      transition: color 0.3s;
+      &:nth-child(2) {
+        padding: 0 15px;
+      }
+    }
+    tbody {
+      display: block;
+      max-height: 500px;
+      overflow-y: scroll;
+    }
+  }
+}
