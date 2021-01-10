@@ -25,13 +25,21 @@ const Tabs = (props) => {
         })}
       </ol>
       <div className="tab-content">
-        {children.map((child,index) => {
+        {children.map((child, index) => {
           if (child.props.label !== activeTab) return undefined;
           return child.props.children;
         })}
       </div>
     </div>
   );
+}
+
+Tabs.propTypes = {
+  children: PropTypes.array
+}
+
+Tabs.defaultProps = {
+  children: []
 }
 
 export default Tabs;

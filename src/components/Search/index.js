@@ -17,7 +17,7 @@ const Search = (props) => {
   return (
     <div className="search-wrapper">
       <input onChange={onInputChange} name="text" type="text" placeholder="Search image" />
-      <span onClick={onSearch} className="search-icon"><img src={SearchIcon}></img></span>
+      <span onClick={onSearch} className="search-icon"><img alt="" src={SearchIcon}></img></span>
     </div>
   );
 }
