@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import PropTypes from 'prop-types';
-import Tab from '@components/Tab';
 import './styles.less';
+
+const Tab = React.lazy(() => import('@components/Tab'));
 
 const Tabs = (props) => {
   const { children } = props;
@@ -12,15 +13,17 @@ const Tabs = (props) => {
   return (
     <div className="tabs">
       <ol className="tab-list">
-        {children.map((child) => {
+        {children.map((child,index) => {
           const { label } = child.props;
           return (
-            <Tab
-              activeTab={activeTab}
-              key={label}
-              label={label}
-              onClickTabItem={onClickTabItem}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Tab
+                activeTab={activeTab}
+                key={label}
+                label={label}
+                onClickTabItem={onClickTabItem}
+              />
+            </Suspense>
           );
         })}
       </ol>

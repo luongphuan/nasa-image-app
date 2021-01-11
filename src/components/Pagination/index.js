@@ -3,33 +3,41 @@ import PropTypes from 'prop-types';
 import './styles.less';
 
 const Pagination = (props) => {
-  const { total, onClickPage } = props;
+  const { total, onClickPage, limit } = props;
   const [currentPage, setCurrentPage] = useState(1);
   var arr = [];
 
   const handleClick = (event) => {
     const index = parseInt(event.target.getAttribute('item-index'));
     setCurrentPage(index);
-    onClickPage(index)
+    onClickPage(index);
   }
 
   const handleClickPrevious = () => {
-    if (currentPage > 2) {
+    if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
+      onClickPage(currentPage - 1);
     }
   }
 
   const handleClickNext = () => {
     if (currentPage < arr.length) {
       setCurrentPage(currentPage + 1);
+      onClickPage(currentPage + 1);
     }
   }
 
   const items = () => {
-    for (let index = 1; index <= total; index++) {
+    let max = 0;
+    if (total / limit && total % limit === 0) {
+      max = total / limit;
+    } else {
+      max = (total / limit) + 1;
+    }
+    for (let index = 1; index <= max; index++) {
       arr.push(index);
     }
-    if (arr.length > 0) {
+    if (arr.length >= 9) {
       if (currentPage <= 4) {
         return <>
           <li onClick={handleClickPrevious}>{"<"}</li>
@@ -127,6 +135,22 @@ const Pagination = (props) => {
         </>
       }
     }
+    if (arr.length > 1 && arr.length < 9) {
+      return <>
+        <li onClick={handleClickPrevious}>{"<"}</li>
+        {arr.map(item => {
+          return <li
+            key={item}
+            className={currentPage === item ? "active" : ""}
+            item-index={item}
+            onClick={handleClick}
+          >
+            {item}
+          </li>
+        })}
+        <li onClick={handleClickNext}>{">"}</li>
+      </>
+    }
   }
 
   return (
@@ -138,11 +162,13 @@ const Pagination = (props) => {
 
 Pagination.propTypes = {
   total: PropTypes.number,
+  limit: PropTypes.number,
   onClickPage: PropTypes.func
 }
 
 Pagination.defaultProps = {
   total: 0,
+  limit: 1,
   onClickPage: () => { }
 }
 
